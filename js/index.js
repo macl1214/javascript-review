@@ -34,7 +34,7 @@ function playRound(playerSelection, computerSelection) {
       if (computerSelection === 'Paper') {
         return `${LOSE} Rock loses to Paper`;
       } else {
-        return `${Win} Rock beats Scissors`;
+        return `${WIN} Rock beats Scissors`;
       }
       break;
     case 'Paper':
@@ -56,9 +56,76 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-const VALID_OPTIONS = ['Rock', 'Paper', 'Scissors'];
+function getPlayerSelection() {
+  
+  while (true) {
 
-const playerSelection = 'Scissors';
-const computerSelection = computerPlay();
+    let playerSelection = prompt("Rock, Paper, or Scissors? Enter \'q\' to quit`");
 
-console.log(playRound(playerSelection, computerSelection));
+    if (playerSelection.toUpperCase() === 'Q') {
+      throw new Error('Game terminated');
+    }
+
+    if (VALID_OPTIONS.includes(playerSelection.toUpperCase())) {
+      return playerSelection;
+    } else {
+      alert('That is not a valid entry! try again.')
+    }
+  }
+}
+
+function game(numOfGames = 5) {
+  console.log("========== Welcome to Tic Tac Toe! ==========\n");
+  let score = 0;
+  const maxGames = numOfGames;
+
+  console.log(`This will be a best out of ${maxGames}`);
+  console.log('\n');
+
+  for (let round = 1; round <= maxGames; round++) {
+    console.log(`----- Round ${round} -----`);
+
+    try {
+      let playerSelection = getPlayerSelection();
+      let computerSelection = computerPlay();
+      
+      let result = playRound(playerSelection, computerSelection);
+      console.log(result);
+
+      if (result.includes('win')) {
+        score++;
+      } 
+      
+      if (result.includes('lose')) {
+        score--;
+      }
+
+    } catch (err) {
+      console.log(err.message);
+      return;
+    }
+
+    console.log("\n");
+  }
+
+  console.log("==========================================");
+  console.log("We've reached the end! Tallying up the score...");
+  console.log("\n");
+
+  setTimeout(function() {
+    if (score > 0) {
+      console.log("Congratulations, you won!");
+    } else if (score < 0) {
+      console.log("The computer bested you. Better luck next time!");
+    } else {
+      console.log("It ends in a draw!!!");
+    }
+  }, 5000);
+  
+}
+
+const VALID_OPTIONS = ["ROCK", "PAPER", "SCISSORS"];
+
+let numOfGames = 5;
+
+game(numOfGames);
