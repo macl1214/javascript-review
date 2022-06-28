@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Javascript Review</title>
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
   <h1>Rock Paper Scissors</h1>
-  
+  <div class="container">
+    <h4 class="game-description">First to 5 wins!</h4>
+    <div class="game">
+      <div class="choices">
+        <div class="player user">
+          <div class="player-heading">
+            <h3>Player</h3>
+            <div class="wins">Wins: <span class="user-wins"></span></div>
+          </div>
+          <div class="user-display"></div>
+        </div>
+        <div class="player computer">
+          <div class="player-heading">
+            <h3>Computer</h3>
+            <div class="wins">Wins: <span class="computer-wins"></span></div>
+          </div>
+          <div class="computer-display"></div>
+        </div>
+      </div>
+    </div>
+    <h4>Make a selection:</h4>
+    <div class="user-selection">
+      <button id="Rock">Rock</button>
+      <button id="Paper">Paper</button>
+      <button id="Scissors">Scissors</button>
+    </div>
+    <div class="result">
+      <h3>Result:</h3>
+      <div class="result-message"></div>
+    </div>
+  </div>
   <script type="text/javascript" src="js/index.js"></script>
 </body>
+
 </html>
